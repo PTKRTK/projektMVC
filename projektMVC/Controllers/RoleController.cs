@@ -27,7 +27,7 @@ namespace projektMVC.Controllers
             }
 
             //to dodac przy tworzeniu uzytkownika
-            public string AddToRole()
+            public string AddToRole2()
             {
                 IdentityManager im = new IdentityManager();
                 im.AddUserToRoleByUserEmail("admin@mail.pl", "Employer");
@@ -35,6 +35,30 @@ namespace projektMVC.Controllers
             im.AddUserToRoleByUserEmail("piotr@mail.pl", "User");
             return "RolesPrzydzielone";
             }
+
+        public string AddAdmin()
+        {
+            IdentityManager im = new IdentityManager();
+            im.AddUserToRoleByUserEmail("admin@mail.pl", "Employer");
+            im.AddUserToRoleByUserEmail("patryk@mail.pl", "User");
+            im.AddUserToRoleByUserEmail("piotr@mail.pl", "User");
+            return "RolesPrzydzielone";
+        }
+       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public string AddAdmin([Bind(Include = "email")] String email)
+        {
+            IdentityManager im = new IdentityManager();
+            im.AddUserToRoleByUserEmail("admin@mail.pl", "Employer");
+            im.AddUserToRoleByUserEmail("patryk@mail.pl", "User");
+            im.AddUserToRoleByUserEmail("piotr@mail.pl", "User");
+            return "RolesPrzydzielone";
+        }
+
+
+
+
 
 
     }

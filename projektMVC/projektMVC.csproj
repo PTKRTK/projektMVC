@@ -306,11 +306,11 @@
     <Content Include="Views\UserPanel\BorrowBook.cshtml" />
     <Content Include="Views\Home\SendEmail.cshtml" />
     <Content Include="Views\UserPanel\BorrowV2.cshtml" />
+    <Content Include="Views\Role\AddEmployer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\BorrowV2\" />
     <Folder Include="Views\Borrow\" />
-    <Folder Include="Views\Role\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
