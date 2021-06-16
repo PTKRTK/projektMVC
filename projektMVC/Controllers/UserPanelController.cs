@@ -16,28 +16,29 @@ namespace projektMVC.Controllers
    
 		private ApplicationDbContext db = new ApplicationDbContext();
 
-		public ActionResult Index()
+        [Authorize(Roles = "User")]
+        public ActionResult Index()
 		{
 			ViewBag.AuthorsList = new LinkedList<SelectListItem>();
 			ViewBag.BooksList = new LinkedList<SelectListItem>();
 
 			return View();
 		}
-
-		public ActionResult Borrowed()
+        [Authorize(Roles = "User")]
+        public ActionResult Borrowed()
 		{
 			var userId = User.Identity.GetUserId();
 			var books = db.Borrows.Where(b => b.UserID == userId).Include(b => b.BookCopy.Book).Include(b => b.BookCopy);
 
 			return View(books.ToList());
 		}
-
-		public JsonResult GetAuthors()
+        [Authorize(Roles = "User")]
+        public JsonResult GetAuthors()
 		{
 			return Json(db.Authors.ToList());
 		}
-
-		public JsonResult GetBooks()
+        [Authorize(Roles = "User")]
+        public JsonResult GetBooks()
 		{
 			var books = db.Books.Include(b => b.BookCategory).Include(b => b.PublishingHouse);
 			return Json(books.ToList());
@@ -47,16 +48,16 @@ namespace projektMVC.Controllers
         public ActionResult BorrowBook()
         {
             var userId = User.Identity.GetUserId();
-            var getCopies = db.BookCopies;
+            var getCopies = db.BookCopies.Include(b=> b.Book);
 
 
-            ViewBag.BookCopyID = new SelectList(getCopies, "BookCopyID", "BookCopyID");
-            ViewBag.PunishmentID = new SelectList(db.Punishments, "PunishmentID", "PunishmentID");
+            ViewBag.BookCopyID = new SelectList(getCopies, "BookCopyID", "BookCopyID", "ISBN");
+    
             ViewBag.UserID = userId;
             return View();
         }
 
-
+    
         // POST: Borrows/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -69,6 +70,9 @@ namespace projektMVC.Controllers
             if (ModelState.IsValid)
             {
                 borrow.UserID = User.Identity.GetUserId();
+                borrow.BorrowDate = DateTime.Today;
+                borrow.ReturnDate = DateTime.Today.AddMonths(1);
+                borrow.PunishmentID = 1;
                 db.Borrows.Add(borrow);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -81,7 +85,7 @@ namespace projektMVC.Controllers
         }
 
 
-
+        [Authorize(Roles = "User")]
         protected override void Dispose(bool disposing)
 		{
 			if (disposing)
