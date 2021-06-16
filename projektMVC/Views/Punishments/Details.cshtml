@@ -1,0 +1,27 @@
+﻿@model projektMVC.Models.Punishment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutEmployer.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Punishment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Charge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Charge)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PunishmentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
