@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
+using System.Timers;
 using System.Web;
 using System.Web.Mvc;
 using projektMVC.Models;
@@ -20,6 +22,104 @@ namespace projektMVC.Controllers
             var books = db.Books.Include(b => b.BookCategory).Include(b => b.PublishingHouse);
             return View(books.ToList());
         }
+
+        
+        public void NotificationForReturnBook()
+        {
+            var users = db.Users.ToList();
+            var borrows = db.Borrows.ToList();
+            string email = "";
+
+            foreach(Borrow b in borrows)
+            {
+                if (b.BorrowDate.AddDays(7).Equals(DateTime.Now))
+                {
+                    foreach(ApplicationUser u in users)
+                    {
+                        if(u.Id == b.UserID)
+                            email = u.Email;
+                    }
+                }
+            }
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var senderEmail = new MailAddress("javaprojekt2137@gmail.com", "ADMINISTRATOR BIBLIOTEKI");
+                    var receiverEmail = new MailAddress(email, "Receiver");
+                    var password = "cxwmgeplhwgqnmot";
+                    var sub = "Powiadomienie o zwrocie";
+                    var body = "ODDAJ TĄ KSIĄŻKĘ WRESZCIE";
+                    var smtp = new SmtpClient
+                    {
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential(senderEmail.Address, password)
+                    };
+                    using (var mess = new MailMessage(senderEmail, receiverEmail)
+                    {
+                        Subject = sub,
+                        Body = body
+                    })
+                    {
+                        smtp.Send(mess);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Some Error";
+            }
+        }
+
+        public void NotificationForBookIsToGet(string userId)
+        {
+            var users = db.Users.ToList();
+            string email = "";
+
+                    foreach (ApplicationUser u in users)
+                    {
+                        if(u.Id == userId)
+                            email = u.Email;
+                    }
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var senderEmail = new MailAddress("javaprojekt2137@gmail.com", "ADMINISTRATOR BIBLIOTEKI");
+                    var receiverEmail = new MailAddress(email, "Receiver");
+                    var password = "cxwmgeplhwgqnmot";
+                    var sub = "Powiadomienie";
+                    var body = "TWOJA KSIAZKA CZEKA NA ODBIÓR";
+                    var smtp = new SmtpClient
+                    {
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential(senderEmail.Address, password)
+                    };
+                    using (var mess = new MailMessage(senderEmail, receiverEmail)
+                    {
+                        Subject = sub,
+                        Body = body
+                    })
+                    {
+                        smtp.Send(mess);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Some Error";
+            }
+        }
+
 
         // GET: Books/Details/5
         public ActionResult Details(int? id)
