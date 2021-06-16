@@ -43,10 +43,46 @@ namespace projektMVC.Controllers
 			return Json(books.ToList());
 		}
 
+        [Authorize(Roles = "User")]
+        public ActionResult BorrowBook()
+        {
+            var userId = User.Identity.GetUserId();
+            var getCopies = db.BookCopies;
 
-	
 
-		protected override void Dispose(bool disposing)
+            ViewBag.BookCopyID = new SelectList(getCopies, "BookCopyID", "BookCopyID");
+            ViewBag.PunishmentID = new SelectList(db.Punishments, "PunishmentID", "PunishmentID");
+            ViewBag.UserID = userId;
+            return View();
+        }
+
+
+        // POST: Borrows/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "User")]
+        public ActionResult BorrowBook([Bind(Include = "BorrowID,BorrowDate,ReturnDate,BookCopyID,UserID,PunishmentID")] Borrow borrow)
+        {
+
+            if (ModelState.IsValid)
+            {
+                borrow.UserID = User.Identity.GetUserId();
+                db.Borrows.Add(borrow);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.BookCopyID = new SelectList(db.BookCopies, "BookCopyID", "BookCopyID", borrow.BookCopyID);
+            ViewBag.PunishmentID = new SelectList(db.Punishments, "PunishmentID", "PunishmentID", borrow.PunishmentID);
+            ViewBag.UserID = new SelectList(db.ApplicationUsers, "Id", "Name", borrow.UserID);
+            return View(borrow);
+        }
+
+
+
+        protected override void Dispose(bool disposing)
 		{
 			if (disposing)
 			{
