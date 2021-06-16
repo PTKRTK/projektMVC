@@ -21,6 +21,7 @@ namespace projektMVC.Controllers
                 IdentityManager im = new IdentityManager();
                 im.CreateRole("Employer");
                 im.CreateRole("User");
+                im.CreateRole("Admin");  
 
                 return "RolesCreated";
             }
@@ -29,9 +30,10 @@ namespace projektMVC.Controllers
             public string AddToRole()
             {
                 IdentityManager im = new IdentityManager();
-                im.AddUserToRoleByUserEmail("admin@mail.xD", "Employer");
-                im.AddUserToRoleByUserEmail("pingwinkomandor@gmail.com", "User");
-                return "RolesPrzydzieloned";
+                im.AddUserToRoleByUserEmail("admin@mail.pl", "Employer");
+                im.AddUserToRoleByUserEmail("patryk@mail.pl", "User");
+            im.AddUserToRoleByUserEmail("piotr@mail.pl", "User");
+            return "RolesPrzydzielone";
             }
 
 
