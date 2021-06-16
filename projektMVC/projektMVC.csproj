@@ -304,6 +304,7 @@
     <Content Include="Views\Shared\_LayoutEmployer.cshtml" />
     <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\UserPanel\BorrowBook.cshtml" />
+    <Content Include="Views\Home\SendEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Borrow\" />
