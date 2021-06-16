@@ -21,6 +21,7 @@ namespace projektMVC.Controllers
                 IdentityManager im = new IdentityManager();
                 im.CreateRole("Employer");
                 im.CreateRole("User");
+                im.CreateRole("Admin");  
 
                 return "RolesCreated";
             }
