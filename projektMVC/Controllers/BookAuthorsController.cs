@@ -39,8 +39,8 @@ namespace projektMVC.Controllers
         // GET: BookAuthors/Create
         public ActionResult Create()
         {
-            ViewBag.BookID= new SelectList(db.Books, "BookID", "BookID");
-            ViewBag.AuthorID = new SelectList(db.Authors, "AuthorID", "AuthorID");
+            ViewBag.BookID= new SelectList(db.Books, "BookID", "BookTitle");
+            ViewBag.AuthorID = new SelectList(db.Authors, "AuthorID", "Name");
             return View();
         }
 

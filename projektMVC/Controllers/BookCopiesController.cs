@@ -39,7 +39,7 @@ namespace projektMVC.Controllers
         // GET: BookCopies/Create
         public ActionResult Create()
         {
-            ViewBag.BookID = new SelectList(db.Books, "BookID", "BookID");
+            ViewBag.BookID = new SelectList(db.Books, "BookID", "BookTitle");
             return View();
         }
 
