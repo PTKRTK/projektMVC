@@ -7,19 +7,18 @@
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<h2>Borrow</h2>
+<h2>Wypożycz książkę</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Borrow</h4>
-        <hr />
+      
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BookCopyID, "BookCopyID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BookCopyID, "ISBN", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("BookCopyID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.BookCopyID, "", new { @class = "text-danger" })
