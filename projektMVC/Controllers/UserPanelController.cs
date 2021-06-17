@@ -19,7 +19,7 @@ namespace projektMVC.Controllers
         private ApplicationDbContext db2 = new ApplicationDbContext();
 
 
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "User, Employer, Admin")]
         public ActionResult Index()
 		{
             //dodane
@@ -55,19 +55,19 @@ namespace projektMVC.Controllers
 
 			return View(books.ToList());
 		}
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "User, Employer, Admin")]
         public JsonResult GetAuthors()
 		{
 			return Json(db.Authors.ToList());
 		}
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "User, Employer, Admin")]
         public JsonResult GetBooks()
 		{
 			var books = db.Books.Include(b => b.BookCategory).Include(b => b.PublishingHouse);
 			return Json(books.ToList());
 		}
 
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "User, Employer, Admin")]
         public ActionResult BorrowBook()
         {
             var userId = User.Identity.GetUserId();
@@ -88,7 +88,7 @@ namespace projektMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "User, Employer, Admin")]
         public ActionResult BorrowBook([Bind(Include = "BorrowID,BorrowDate,ReturnDate,BookCopyID,UserID,PunishmentID")] Borrow borrow)
         {
 
@@ -118,7 +118,7 @@ namespace projektMVC.Controllers
 
 
 
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "User, Employer, Admin")]
         protected override void Dispose(bool disposing)
 		{
 			if (disposing)
@@ -130,13 +130,14 @@ namespace projektMVC.Controllers
 
 
 
-
+        [Authorize(Roles = "User, Employer, Admin")]
         public JsonResult GetBookCopies()
         {
             var books = db.BookCopies;
             return Json(books.ToList());
         }
 
+        [Authorize(Roles = "User, Employer, Admin")]
         public void NotificationForBookIsToGet(string userId)
         {
             var users = db.Users.ToList();
@@ -206,7 +207,7 @@ namespace projektMVC.Controllers
 
 
 
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "User, Employer, Admin")]
 
         public ActionResult Search(string search)
         {
@@ -227,7 +228,7 @@ namespace projektMVC.Controllers
 
 
 
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "User, Employer, Admin")]
         public ActionResult BorrowBySearch(int? id)
         {
             if (id == null)
