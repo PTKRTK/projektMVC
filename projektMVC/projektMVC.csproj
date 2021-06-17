@@ -434,6 +434,7 @@
     <Content Include="Scripts\umd\popper-utils.js.map" />
     <Content Include="Views\UserPanel\Search.cshtml" />
     <Content Include="Views\Role\AddAnnouncement.cshtml" />
+    <Content Include="Views\UserPanel\BorrowBySearch.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

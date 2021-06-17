@@ -21,13 +21,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                   
+
                     <li>@Html.ActionLink("Ksiązki", "Index", "Books")</li>
                     <li>@Html.ActionLink("Autorzy", "Index", "Authors")</li>
                     <li>@Html.ActionLink("Zarządzaj autorami książek", "Index", "BookAuthors")</li>
                     <li>@Html.ActionLink("Kategorie książek", "Index", "BookCategories")</li>
                     <li>@Html.ActionLink("Wydawnictwa", "Index", "PublishingHouses")</li>
                     <li>@Html.ActionLink("Egzemplarze", "Index", "BookCopies")</li>
+                    <li>@Html.ActionLink("Zarządzanie wypożyczeniami", "Index", "Borrow")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
