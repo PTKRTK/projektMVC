@@ -11,6 +11,7 @@ namespace projektMVC.Models
         public int ISBN { get; set; }
         public int BookCopyReleaseYear { get; set; }
         public int BookID { get; set; }
+        public string IsBorrowed { get; set; }
         public virtual Book Book { get; set; }
 
         public virtual ICollection<Borrow> Borrows { get; set; }

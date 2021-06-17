@@ -56,6 +56,7 @@ namespace projektMVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                bookCopy.IsBorrowed = "Free";
                 db.BookCopies.Add(bookCopy);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -187,6 +187,10 @@
     <Compile Include="Migrations\202106161917338_InitialCreate.Designer.cs">
       <DependentUpon>202106161917338_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106170747286_isBorrowed.cs" />
+    <Compile Include="Migrations\202106170747286_isBorrowed.Designer.cs">
+      <DependentUpon>202106170747286_isBorrowed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Author.cs" />
@@ -332,6 +336,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202106161917338_InitialCreate.resx">
       <DependentUpon>202106161917338_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106170747286_isBorrowed.resx">
+      <DependentUpon>202106170747286_isBorrowed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
