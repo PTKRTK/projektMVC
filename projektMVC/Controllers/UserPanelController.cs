@@ -182,15 +182,25 @@ namespace projektMVC.Controllers
         }
 
 
+
+
         [Authorize(Roles = "User")]
-        public ActionResult Search(string search)
+        public ActionResult Search()
         {
-            var searchedBooks = db.Books.Where(b => b.BookTitle.Equals(search));
             return View();
         }
 
+        [Authorize(Roles = "User")]
+        [HttpPost]
+        public ActionResult Search(string search)
+        {
+            List<Book> lista = new List<Book>();
+            var searchedBooks = db.Books.Where(b => b.BookTitle.Equals(search));
 
-   
+            ViewBag.Message = searchedBooks.ToList();
+            return View();
+        }
+
 
 
 

@@ -40,6 +40,7 @@ namespace projektMVC.Models
 		public DbSet<PublishingHouse> PublishingHouses { get; set; }
 		public DbSet<Punishment> Punishments { get; set; }
 		public DbSet<Borrow> Borrows { get; set; }
+		public DbSet<Announcement> Announcements { get; set; }
 		public IEnumerable ApplicationUsers { get; internal set; }
 	}
 

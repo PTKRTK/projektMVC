@@ -191,8 +191,13 @@
     <Compile Include="Migrations\202106170747286_isBorrowed.Designer.cs">
       <DependentUpon>202106170747286_isBorrowed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106171233293_Annoucments.cs" />
+    <Compile Include="Migrations\202106171233293_Annoucments.Designer.cs">
+      <DependentUpon>202106171233293_Annoucments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Announcement.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\BookAuhor.cs" />
@@ -441,6 +446,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106170747286_isBorrowed.resx">
       <DependentUpon>202106170747286_isBorrowed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106171233293_Annoucments.resx">
+      <DependentUpon>202106171233293_Annoucments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

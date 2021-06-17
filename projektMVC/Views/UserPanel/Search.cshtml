@@ -1,4 +1,6 @@
-﻿
+﻿@model projektMVC.Models.Book
+@model IEnumerable<projektMVC.Models.Book>
+
 @{
     ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
@@ -6,16 +8,27 @@
 
 <h2>Search</h2>
 
+<div>
+    @foreach ( b in ViewBag.Message)
+    {
+
+
+    }
+
+
+
+</div>
 
 @using (Html.BeginForm())
 {
+
     <table>
         <tr>
             <td>
-                Email:
+                Wpisz szukane słowo:
             </td>
             <td><input type="text" name="email" /> </td>
-        </tr> 
+        </tr>
 
         <tr>
             <td>
@@ -24,5 +37,10 @@
             <td><input type="submit" value="Wyslij" /> </td>
         </tr>
     </table>
+
+
+
+
+
 
 }
