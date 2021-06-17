@@ -21,15 +21,18 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Jestem użytkownikiem", "Index", "UserPanel")</li>
-                    <li>@Html.ActionLink("Jestem pracownikiem", "Index", "Authors")</li>
-                    <li>@Html.ActionLink("Tylko Admin", "Index", "role")</li>
+
+                    <li>@Html.ActionLink("Dodaj role użytkownikowi", "AddToRole", "role")</li>
+                    <li>@Html.ActionLink("Usuńrole użytkownikowi", "DeleteUserRole", "role")</li>
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
+
+
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -42,5 +45,6 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     @RenderSection("css", required: false)
+
 </body>
 </html>

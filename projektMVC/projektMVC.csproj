@@ -305,13 +305,12 @@
     <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\UserPanel\BorrowBook.cshtml" />
     <Content Include="Views\Home\SendEmail.cshtml" />
-    <Content Include="Views\UserPanel\BorrowV2.cshtml" />
-    <Content Include="Views\Role\AddEmployer.cshtml" />
+    <Content Include="Views\Role\AddToRole.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Role\DeleteUserRole.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\BorrowV2\" />
-    <Folder Include="Views\Borrow\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

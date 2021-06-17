@@ -142,7 +142,20 @@ namespace projektMVC.Models
 			return idResult.Succeeded;
 		}
 
+		public void ClearUserRolesByUserMail(string mail)
+		{
+			var um = LocalUserManager;
+			var id = um.FindByEmail(mail).Id;
+			var user = um.FindById(id);
+			var currentRoles = new List<IdentityUserRole>();
 
+			currentRoles.AddRange(user.Roles);
+
+			foreach (var role in currentRoles)
+			{
+				um.RemoveFromRole(id, role.RoleId);
+			}
+		}
 
 
 		public void ClearUserRoles(string userId)

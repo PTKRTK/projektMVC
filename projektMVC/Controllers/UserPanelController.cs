@@ -96,14 +96,7 @@ namespace projektMVC.Controllers
 			base.Dispose(disposing);
 		}
 
-        //eksperyment
-        [Authorize(Roles = "User")]
-        public ActionResult BorrowV2()
-        {
-            ViewBag.BookCopiesList = new LinkedList<SelectListItem>();
 
-            return View();
-        }
 
 
         public JsonResult GetBookCopies()

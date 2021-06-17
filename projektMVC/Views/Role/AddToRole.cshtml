@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "AddRole";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>AddEmployer</h2>
+
+@using (Html.BeginForm())
+            {
+<table>
+    <tr>
+        <td>
+            Email:
+        </td>
+        <td><input type="text" name="email" /> </td>
+    </tr>
+
+    <tr>
+        <td>
+            Wpisz nazwe roli (pierwsza litera musi być wielka, następne małe):
+        </td>
+        <td><input type="text" name="RoleName" /> </td>
+    </tr>
+
+    <tr>
+        <td>
+            &nbsp
+        </td>
+        <td><input type="submit" value="Wyslij" /> </td>
+    </tr>
+</table>
+
+            }

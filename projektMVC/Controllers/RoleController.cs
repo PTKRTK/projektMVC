@@ -9,14 +9,15 @@ namespace projektMVC.Controllers
 {
     public class RoleController : Controller
     {
-  
-            // GET: Role
-            public ActionResult Index()
+        private ApplicationDbContext db = new ApplicationDbContext();
+        // GET: Role
+        [Authorize(Roles = "Admin")]
+        public ActionResult Index()
             {
                 return View();
             }
-
-            public string Create()
+        [Authorize(Roles = "Admin")]
+        public string Create()
             {
                 IdentityManager im = new IdentityManager();
                 im.CreateRole("Employer");
@@ -30,31 +31,63 @@ namespace projektMVC.Controllers
             public string AddToRole2()
             {
                 IdentityManager im = new IdentityManager();
-                im.AddUserToRoleByUserEmail("admin@mail.pl", "Employer");
-                im.AddUserToRoleByUserEmail("patryk@mail.pl", "User");
-            im.AddUserToRoleByUserEmail("piotr@mail.pl", "User");
+                im.AddUserToRoleByUserEmail("admin@mail.pl", "Admin");
+                im.AddUserToRoleByUserEmail("patryk@mail.pl", "Employer");
+             im.AddUserToRoleByUserEmail("piotr@mail.pl", "User");
             return "RolesPrzydzielone";
             }
+        [Authorize(Roles = "Admin")]
+        public ActionResult AddToRole()
+        {
+            return View();
+        }
 
-        public string AddAdmin()
-        {
-            IdentityManager im = new IdentityManager();
-            im.AddUserToRoleByUserEmail("admin@mail.pl", "Employer");
-            im.AddUserToRoleByUserEmail("patryk@mail.pl", "User");
-            im.AddUserToRoleByUserEmail("piotr@mail.pl", "User");
-            return "RolesPrzydzielone";
-        }
-       
+    
+        [Authorize(Roles = "Admin")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public string AddAdmin([Bind(Include = "email")] String email)
+        public ActionResult AddToRole(string email, string RoleName)
         {
-            IdentityManager im = new IdentityManager();
-            im.AddUserToRoleByUserEmail("admin@mail.pl", "Employer");
-            im.AddUserToRoleByUserEmail("patryk@mail.pl", "User");
-            im.AddUserToRoleByUserEmail("piotr@mail.pl", "User");
-            return "RolesPrzydzielone";
+            var users = db.Users.ToList();
+
+            foreach (ApplicationUser u in users)    {
+                if (u.UserName.Equals(email))
+                {
+                    if (RoleName.Equals("Admin") || RoleName.Equals("User") || RoleName.Equals("Employer"))
+                    {
+                        IdentityManager im = new IdentityManager();
+                        im.AddUserToRoleByUserEmail(email, RoleName);
+
+                        return Redirect("Index");
+                    }
+                }
+            }
+  
+
+            return Redirect("AddToRole");
+
         }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult DeleteUserRole()
+        {
+            return View();
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public ActionResult DeleteUserRole(string email)
+        {
+      
+                        IdentityManager im = new IdentityManager();
+                       // im.ClearUserRolesByUserMail(email);
+           //         im.ClearUserRoles("df8cefe2 - ca06 - 4791 - bd29 - 003f9bc0db10");
+                        return Redirect("Index");
+             
+    
+
+        }
+
 
 
 
