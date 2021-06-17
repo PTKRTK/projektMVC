@@ -78,7 +78,7 @@ namespace projektMVC.Controllers
         public ActionResult BorrowBook()
         {
             var userId = User.Identity.GetUserId();
-            var getCopies = db.BookCopies.Include(b=> b.Book);
+            var getCopies = db.BookCopies.Where(b=>b.IsBorrowed.Equals("Free")).Include(b=> b.Book);
 
 
             ViewBag.BookCopyID = new SelectList(getCopies, "BookCopyID", "BookCopyID", "Name");
@@ -103,6 +103,12 @@ namespace projektMVC.Controllers
                 borrow.BorrowDate = DateTime.Today;
                 borrow.ReturnDate = DateTime.Today.AddMonths(1);
                 borrow.PunishmentID = 1;
+
+                //zmienione
+                var bookCopyUpdate = db.BookCopies.Find(borrow.BookCopyID);
+                bookCopyUpdate.IsBorrowed = "Borrowed";
+                db.Entry(bookCopyUpdate).State = EntityState.Modified;
+
                 NotificationForBookIsToGet(User.Identity.GetUserId());
                 db.Borrows.Add(borrow);
                 db.SaveChanges();
