@@ -184,7 +184,7 @@ namespace projektMVC.Controllers
 
 
 
-
+        /*
 
         [Authorize(Roles = "User")]
      
@@ -202,7 +202,29 @@ namespace projektMVC.Controllers
 
             return View(book_.ToList());
 
+        } */
+
+
+
+        [Authorize(Roles = "User")]
+
+        public ActionResult Search(string search)
+        {
+            var bookCopies_ = db.BookCopies.Include(b => b.Book).Include(b => b.Book.BookCategory);
+
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                bookCopies_ = bookCopies_.Where(s => s.Book.BookTitle.Contains(search) || s.Book.BookCategory.CategoryTitle.Contains(search) || s.ISBN.ToString().Contains(search));
+                
+
+
+            }
+
+            return View(bookCopies_.ToList());
+
         }
+
 
 
         [Authorize(Roles = "User")]

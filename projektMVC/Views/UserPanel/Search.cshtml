@@ -1,4 +1,4 @@
-﻿@model IEnumerable<projektMVC.Models.Book>
+﻿@model IEnumerable<projektMVC.Models.BookCopy>
 
 @{
     ViewBag.Title = "Search";
@@ -24,7 +24,7 @@
 
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BookTitle)
+            @Html.DisplayNameFor(model => model.Book)
         </th>
         <th></th>
     </tr>
@@ -33,8 +33,11 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.BookTitle)
+                @Html.DisplayFor(modelItem => item )
+                    
             </td>
+
+
                         @Html.ActionLink("Szczegóły", "", new { id = item.BookID}) |
 
             
