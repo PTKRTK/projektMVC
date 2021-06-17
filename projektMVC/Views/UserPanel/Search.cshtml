@@ -22,29 +22,30 @@
     }
 
 
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Book)
-        </th>
-        <th></th>
-    </tr>
+<tr>
+    <th>
+        @Html.DisplayNameFor(model => model.ISBN)
+    </th>
+    <th>
+        <p>Tytuł</p>
+    </th>
+    <th>
+        <p > Autor</p>
+        @*@Html.DisplayNameFor("")*@
+    </th>
+</tr>
 
     @foreach (var item in Model)
     {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.ISBN)
-                @Html.DisplayFor(modelItem => item.Book.BookTitle)
-                @Html.DisplayFor(modelItem => item.Book.BookCategory.CategoryTitle)
-                
-
-
-
             </td>
-
-
-            
             <td>
+                @Html.DisplayFor(modelItem => item.Book.BookTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book.BookCategory.CategoryTitle)
             </td>
         </tr>
     }

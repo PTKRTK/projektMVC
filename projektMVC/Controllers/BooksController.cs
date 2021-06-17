@@ -80,123 +80,123 @@ namespace projektMVC.Controllers
 
 
 
-        // GET: Books/Details/5
-        //[Authorize(Roles = "Employer")]
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Book book = db.Books.Find(id);
-        //    if (book == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(book);
-        //}
+        GET: Books/Details/5
+        [Authorize(Roles = "Employer")]
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Book book = db.Books.Find(id);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+            return View(book);
+        }
 
-        //// GET: Books/Create
-        //[Authorize(Roles = "Employer")]
-        //public ActionResult Create()
-        //{
-        //    ViewBag.BookCategoryID = new SelectList(db.BookCategories, "BookCategoryID", "CategoryTitle");
-        //    ViewBag.PublishingHouseID = new SelectList(db.PublishingHouses, "PublishingHouseID", "Name");
-        //    return View();
-        //}
+        // GET: Books/Create
+        [Authorize(Roles = "Employer")]
+        public ActionResult Create()
+        {
+            ViewBag.BookCategoryID = new SelectList(db.BookCategories, "BookCategoryID", "CategoryTitle");
+            ViewBag.PublishingHouseID = new SelectList(db.PublishingHouses, "PublishingHouseID", "Name");
+            return View();
+        }
 
-        //// POST: Books/Create
-        //// To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[Authorize(Roles = "Employer")]
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "BookID,BookTitle,PublicationYear,PublishingHouseID,BookCategoryID")] Book book)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Books.Add(book);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
+        // POST: Books/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Employer")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "BookID,BookTitle,PublicationYear,PublishingHouseID,BookCategoryID")] Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Books.Add(book);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
-        //    ViewBag.BookCategoryID = new SelectList(db.BookCategories, "BookCategoryID", "CategoryTitle", book.BookCategoryID);
-        //    ViewBag.PublishingHouseID = new SelectList(db.PublishingHouses, "PublishingHouseID", "Name", book.PublishingHouseID);
-        //    return View(book);
-        //}
+            ViewBag.BookCategoryID = new SelectList(db.BookCategories, "BookCategoryID", "CategoryTitle", book.BookCategoryID);
+            ViewBag.PublishingHouseID = new SelectList(db.PublishingHouses, "PublishingHouseID", "Name", book.PublishingHouseID);
+            return View(book);
+        }
 
-        //// GET: Books/Edit/5
-        //[Authorize(Roles = "Employer")]
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Book book = db.Books.Find(id);
-        //    if (book == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    ViewBag.BookCategoryID = new SelectList(db.BookCategories, "BookCategoryID", "CategoryTitle", book.BookCategoryID);
-        //    ViewBag.PublishingHouseID = new SelectList(db.PublishingHouses, "PublishingHouseID", "Name", book.PublishingHouseID);
-        //    return View(book);
-        //}
+        // GET: Books/Edit/5
+        [Authorize(Roles = "Employer")]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Book book = db.Books.Find(id);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.BookCategoryID = new SelectList(db.BookCategories, "BookCategoryID", "CategoryTitle", book.BookCategoryID);
+            ViewBag.PublishingHouseID = new SelectList(db.PublishingHouses, "PublishingHouseID", "Name", book.PublishingHouseID);
+            return View(book);
+        }
 
-        //// POST: Books/Edit/5
-        //// To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[Authorize(Roles = "Employer")]
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "BookID,BookTitle,PublicationYear,PublishingHouseID,BookCategoryID")] Book book)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(book).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    ViewBag.BookCategoryID = new SelectList(db.BookCategories, "BookCategoryID", "CategoryTitle", book.BookCategoryID);
-        //    ViewBag.PublishingHouseID = new SelectList(db.PublishingHouses, "PublishingHouseID", "Name", book.PublishingHouseID);
-        //    return View(book);
-        //}
+        // POST: Books/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Employer")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "BookID,BookTitle,PublicationYear,PublishingHouseID,BookCategoryID")] Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(book).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.BookCategoryID = new SelectList(db.BookCategories, "BookCategoryID", "CategoryTitle", book.BookCategoryID);
+            ViewBag.PublishingHouseID = new SelectList(db.PublishingHouses, "PublishingHouseID", "Name", book.PublishingHouseID);
+            return View(book);
+        }
 
-        //// GET: Books/Delete/5
-        //[Authorize(Roles = "Employer")]
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Book book = db.Books.Find(id);
-        //    if (book == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(book);
-        //}
+        // GET: Books/Delete/5
+        [Authorize(Roles = "Employer")]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Book book = db.Books.Find(id);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+            return View(book);
+        }
 
-        //// POST: Books/Delete/5
-        //[Authorize(Roles = "Employer")]
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Book book = db.Books.Find(id);
-        //    db.Books.Remove(book);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+        // POST: Books/Delete/5
+        [Authorize(Roles = "Employer")]
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Book book = db.Books.Find(id);
+            db.Books.Remove(book);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }
