@@ -427,6 +427,7 @@
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
     <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Views\UserPanel\Search.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
