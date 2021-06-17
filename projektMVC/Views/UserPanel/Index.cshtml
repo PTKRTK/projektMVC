@@ -12,13 +12,19 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.BookCopy.ISBN)
-            @Html.DisplayNameFor(model => model.BookCopy.Book.BookTitle)
-            @Html.DisplayNameFor(model => model.BorrowDate)
-            @Html.DisplayNameFor(model => model.ReturnDate)
-            @Html.DisplayNameFor(model => model.Punishment.Charge)
-
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookCopy.Book.BookTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BorrowDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </th>    
+        <th>
+            @Html.DisplayNameFor(model => model.Punishment.Charge)
+        </th>       
     </tr>
 
     @foreach (var item in Model)
@@ -26,13 +32,19 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.BookCopy.ISBN)
-                @Html.DisplayFor(modelItem => item.BookCopy.Book.BookTitle)
-                @Html.DisplayFor(modelItem => item.BorrowDate.Date)
-                @Html.DisplayFor(modelItem => item.ReturnDate.Date)
-                @Html.DisplayFor(modelItem => item.Punishment.Charge)
-
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.BookCopy.Book.BookTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BorrowDate.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnDate.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Punishment.Charge)
+            </td>
         </tr>
     }
 
