@@ -17,14 +17,14 @@ namespace projektMVC.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Books
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Index()
         {
             var books = db.Books.Include(b => b.BookCategory).Include(b => b.PublishingHouse);
             return View(books.ToList());
         }
 
-        
+        [Authorize(Roles = "Employer, Admin")]
         public void NotificationForReturnBook()
         {
             var users = db.Users.ToList();

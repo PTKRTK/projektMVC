@@ -14,6 +14,7 @@ namespace projektMVC.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Borrows
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Index()
         {
             var borrows = db.Borrows.Include(b => b.BookCopy).Include(b => b.Punishment).Include(b => b.User);
@@ -21,6 +22,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: Borrows/Details/5
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: Borrows/Create
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Create()
         {
             ViewBag.BookCopyID = new SelectList(db.BookCopies, "BookCopyID", "BookCopyID");
@@ -49,6 +52,7 @@ namespace projektMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Create([Bind(Include = "BorrowID,BorrowDate,ReturnDate,BookCopyID,UserID,PunishmentID")] Borrow borrow)
         {
             if (ModelState.IsValid)
@@ -65,6 +69,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: Borrows/Edit/5
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -87,6 +92,7 @@ namespace projektMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Edit([Bind(Include = "BorrowID,BorrowDate,ReturnDate,BookCopyID,UserID,PunishmentID")] Borrow borrow)
         {
             if (ModelState.IsValid)
@@ -102,6 +108,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: Borrows/Delete/5
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -129,7 +136,7 @@ namespace projektMVC.Controllers
             return RedirectToAction("Index");
         }
 
-
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult BorrowForUser(int? id)
         {
             if (id == null)

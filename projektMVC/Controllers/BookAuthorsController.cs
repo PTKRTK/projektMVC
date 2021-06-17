@@ -15,7 +15,7 @@ namespace projektMVC.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BookAuthors
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Index()
         {
             var bookAuthors = db.BookAuthors.Include(b => b.Author).Include(b => b.Book);
@@ -23,7 +23,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: BookAuthors/Details/5
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,7 +39,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: BookAuthors/Create
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Create()
         {
             ViewBag.BookID= new SelectList(db.Books, "BookID", "BookTitle");
@@ -52,7 +52,7 @@ namespace projektMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Create([Bind(Include = "BookAuthorID,BookID,AuthorID")] BookAuthor bookAuthor)
         {
             if (ModelState.IsValid)
@@ -68,7 +68,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: BookAuthors/Edit/5
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,7 +90,7 @@ namespace projektMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Edit([Bind(Include = "BookAuthorID,BookID,AuthorID")] BookAuthor bookAuthor)
         {
             if (ModelState.IsValid)
@@ -105,7 +105,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: BookAuthors/Delete/5
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -123,7 +123,7 @@ namespace projektMVC.Controllers
         // POST: BookAuthors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             BookAuthor bookAuthor = db.BookAuthors.Find(id);
@@ -132,7 +132,7 @@ namespace projektMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

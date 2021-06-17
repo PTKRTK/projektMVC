@@ -15,12 +15,14 @@ namespace projektMVC.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Punishments
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Index()
         {
             return View(db.Punishments.ToList());
         }
 
         // GET: Punishments/Details/5
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: Punishments/Create
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace projektMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Create([Bind(Include = "PunishmentID,Charge")] Punishment punishment)
         {
             if (ModelState.IsValid)
@@ -59,6 +63,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: Punishments/Edit/5
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace projektMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Edit([Bind(Include = "PunishmentID,Charge")] Punishment punishment)
         {
             if (ModelState.IsValid)
@@ -90,6 +96,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: Punishments/Delete/5
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +114,7 @@ namespace projektMVC.Controllers
         // POST: Punishments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Punishment punishment = db.Punishments.Find(id);

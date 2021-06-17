@@ -15,14 +15,14 @@ namespace projektMVC.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Authors
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Index()
         {
             return View(db.Authors.ToList());
         }
 
         // GET: Authors/Details/5
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,7 +38,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: Authors/Create
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Create()
         {
             return View();
@@ -49,7 +49,7 @@ namespace projektMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Create([Bind(Include = "AuthorID,Name,Surname")] Author author)
         {
             if (ModelState.IsValid)
@@ -63,7 +63,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: Authors/Edit/5
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,7 +83,7 @@ namespace projektMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Edit([Bind(Include = "AuthorID,Name,Surname")] Author author)
         {
             if (ModelState.IsValid)
@@ -96,7 +96,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: Authors/Delete/5
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -114,7 +114,7 @@ namespace projektMVC.Controllers
         // POST: Authors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Author author = db.Authors.Find(id);
@@ -123,7 +123,7 @@ namespace projektMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

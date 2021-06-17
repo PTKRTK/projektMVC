@@ -16,14 +16,14 @@ namespace projektMVC.Controllers
 
 
         // GET: BookCategories
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Index()
         {
             return View(db.BookCategories.ToList());
         }
 
         // GET: BookCategories/Details/5
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,7 +39,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: BookCategories/Create
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Create()
         {
             return View();
@@ -50,7 +50,7 @@ namespace projektMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Create([Bind(Include = "BookCategoryID,CategoryTitle")] BookCategory bookCategory)
         {
             if (ModelState.IsValid)
@@ -64,7 +64,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: BookCategories/Edit/5
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -84,7 +84,7 @@ namespace projektMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Edit([Bind(Include = "BookCategoryID,CategoryTitle")] BookCategory bookCategory)
         {
             if (ModelState.IsValid)
@@ -97,7 +97,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: BookCategories/Delete/5
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -115,7 +115,7 @@ namespace projektMVC.Controllers
         // POST: BookCategories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer, Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             BookCategory bookCategory = db.BookCategories.Find(id);
@@ -123,8 +123,8 @@ namespace projektMVC.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-       
-        [Authorize(Roles = "Employer")]
+
+        [Authorize(Roles = "Employer, Admin")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
