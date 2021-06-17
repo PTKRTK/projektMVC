@@ -81,7 +81,7 @@ namespace projektMVC.Controllers
             var getCopies = db.BookCopies.Include(b=> b.Book);
 
 
-            ViewBag.BookCopyID = new SelectList(getCopies, "BookCopyID", "BookCopyID", "ISBN");
+            ViewBag.BookCopyID = new SelectList(getCopies, "BookCopyID", "BookCopyID", "Name");
     
             ViewBag.UserID = userId;
             return View();
