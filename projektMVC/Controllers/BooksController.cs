@@ -80,7 +80,7 @@ namespace projektMVC.Controllers
 
 
 
-        GET: Books/Details/5
+        //GET: Books/Details/5
         [Authorize(Roles = "Employer")]
         public ActionResult Details(int? id)
         {
