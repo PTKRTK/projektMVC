@@ -1,18 +1,24 @@
-﻿using System;
+﻿using projektMVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace projektMVC.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
-            return View();
+            var annoucements = db.Announcements.ToList();
+            return View(annoucements);
+            
         }
 
         public ActionResult SendEmail()

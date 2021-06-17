@@ -22,9 +22,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
 
-                    <li>@Html.ActionLink("Dodaj role użytkownikowi", "AddToRole", "role")</li>
-                    <li>@Html.ActionLink("Usuńrole użytkownikowi", "DeleteUserRole", "role")</li>
-
+                    <li>@Html.ActionLink("Dodaj role", "AddToRole", "role")</li>
+                    <li>@Html.ActionLink("Usuń role", "DeleteUserRole", "role")</li>
+                    <li>@Html.ActionLink("Dodaj ogłoszenie", "AddAnnouncement", "role")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -37,7 +37,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Projekt Biblioteka - Patryk Rutkowski, Piotr Sawczuk</p>
         </footer>
     </div>
 

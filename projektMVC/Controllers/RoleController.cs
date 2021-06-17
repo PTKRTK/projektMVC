@@ -88,7 +88,25 @@ namespace projektMVC.Controllers
 
         }
 
+        [Authorize(Roles = "Admin")]
+        public ActionResult AddAnnouncement()
+        {
+            return View();
+        }
 
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public ActionResult AddAnnouncement(string announcementText)
+        {
+            Announcement announcement = new Announcement();
+            announcement.AnnouncementText = announcementText;
+            announcement.PublicationDate = DateTime.Now;
+            db.Announcements.Add(announcement);
+            db.SaveChanges();
+
+            return Redirect("AddAnnouncement");
+
+        }
 
 
 

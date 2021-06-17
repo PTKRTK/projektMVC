@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "AddAnnouncement";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>AddAnnoucement</h2>
+
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>
+                Treść ogłoszenia:
+            </td>
+            <td><input type="text" name="announcementText" /> </td>
+        </tr>
+
+        <tr>
+            <td>
+                &nbsp
+            </td>
+            <td><input type="submit" value="Dodaj" /> </td>
+        </tr>
+    </table>
+
+}
