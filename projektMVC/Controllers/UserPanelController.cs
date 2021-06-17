@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Data;
 using System.Net;
 using Microsoft.AspNet.Identity;
+using System.Net.Mail;
 
 namespace projektMVC.Controllers
 {
@@ -102,6 +103,7 @@ namespace projektMVC.Controllers
                 borrow.BorrowDate = DateTime.Today;
                 borrow.ReturnDate = DateTime.Today.AddMonths(1);
                 borrow.PunishmentID = 1;
+                NotificationForBookIsToGet(User.Identity.GetUserId());
                 db.Borrows.Add(borrow);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -132,6 +134,50 @@ namespace projektMVC.Controllers
         {
             var books = db.BookCopies;
             return Json(books.ToList());
+        }
+
+        public void NotificationForBookIsToGet(string userId)
+        {
+            var users = db.Users.ToList();
+            string email = "";
+
+            foreach (ApplicationUser u in users)
+            {
+                if (u.Id == userId)
+                    email = u.Email;
+            }
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var senderEmail = new MailAddress("javaprojekt2137@gmail.com", "ADMINISTRATOR BIBLIOTEKI");
+                    var receiverEmail = new MailAddress(email, "Receiver");
+                    var password = "cxwmgeplhwgqnmot";
+                    var sub = "Powiadomienie";
+                    var body = "TWOJA KSIAZKA CZEKA NA ODBIÓR";
+                    var smtp = new SmtpClient
+                    {
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential(senderEmail.Address, password)
+                    };
+                    using (var mess = new MailMessage(senderEmail, receiverEmail)
+                    {
+                        Subject = sub,
+                        Body = body
+                    })
+                    {
+                        smtp.Send(mess);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Some Error";
+            }
         }
 
 
