@@ -78,7 +78,7 @@ namespace projektMVC.Controllers
             }
             ViewBag.BookCopyID = new SelectList(db.BookCopies, "BookCopyID", "BookCopyID", borrow.BookCopyID);
             ViewBag.PunishmentID = new SelectList(db.Punishments, "PunishmentID", "PunishmentID", borrow.PunishmentID);
-            ViewBag.UserID = new SelectList(db.ApplicationUsers, "Id", "Name", borrow.UserID);
+            ViewBag.UserID = new SelectList(db.Borrows, "UserID", "Name", borrow.UserID);
             return View(borrow);
         }
 
