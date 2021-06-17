@@ -17,6 +17,7 @@ namespace projektMVC.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Books
+        [Authorize(Roles = "Employer")]
         public ActionResult Index()
         {
             var books = db.Books.Include(b => b.BookCategory).Include(b => b.PublishingHouse);
@@ -76,10 +77,11 @@ namespace projektMVC.Controllers
             }
         }
 
-        
+
 
 
         // GET: Books/Details/5
+        [Authorize(Roles = "Employer")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -95,6 +97,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: Books/Create
+        [Authorize(Roles = "Employer")]
         public ActionResult Create()
         {
             ViewBag.BookCategoryID = new SelectList(db.BookCategories, "BookCategoryID", "CategoryTitle");
@@ -105,6 +108,7 @@ namespace projektMVC.Controllers
         // POST: Books/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Employer")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "BookID,BookTitle,PublicationYear,PublishingHouseID,BookCategoryID")] Book book)
@@ -122,6 +126,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: Books/Edit/5
+        [Authorize(Roles = "Employer")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -141,6 +146,7 @@ namespace projektMVC.Controllers
         // POST: Books/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Employer")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "BookID,BookTitle,PublicationYear,PublishingHouseID,BookCategoryID")] Book book)
@@ -157,6 +163,7 @@ namespace projektMVC.Controllers
         }
 
         // GET: Books/Delete/5
+        [Authorize(Roles = "Employer")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -172,6 +179,7 @@ namespace projektMVC.Controllers
         }
 
         // POST: Books/Delete/5
+        [Authorize(Roles = "Employer")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
