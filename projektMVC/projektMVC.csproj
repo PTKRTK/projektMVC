@@ -317,6 +317,7 @@
     <Content Include="Views\Borrow\Delete.cshtml" />
     <Content Include="Views\Borrow\Edit.cshtml" />
     <Content Include="Views\Borrow\Details.cshtml" />
+    <Content Include="Views\Borrow\BorrowForUser.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

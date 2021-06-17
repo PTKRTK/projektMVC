@@ -19,13 +19,17 @@
             @Html.DisplayNameFor(model => model.Punishment.Charge)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BookCopy.ISBN)
+            Nazwa użytkownika
         </th>
         <th>
             @Html.DisplayNameFor(model => model.BorrowDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ReturnDate)
+        </th>
+
+        <th>
+            Status ksiązki
         </th>
         <th></th>
     </tr>
@@ -45,17 +49,20 @@
     </td>
 
     <td>
-        <!-- Html.DisplayFor(modelItem => item.BorrowDate.ToString()) -->
         @item.BorrowDate
     </td>
     <td>
-        <!-- Html.DisplayFor(modelItem => item.ReturnDate.ToString()) -->
         @item.ReturnDate
+    </td>
+
+    <td>
+        @item.BookCopy.IsBorrowed
     </td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.BorrowID }) |
         @Html.ActionLink("Details", "Details", new { id = item.BorrowID }) |
         @Html.ActionLink("Delete", "Delete", new { id = item.BorrowID })
+        @Html.ActionLink("BorrowForUser", "BorrowForUser", new { id = item.BorrowID })
     </td>
 </tr>
     }

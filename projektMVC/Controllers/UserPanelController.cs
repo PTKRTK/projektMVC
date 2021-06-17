@@ -74,8 +74,10 @@ namespace projektMVC.Controllers
             var getCopies = db.BookCopies.Where(b=>b.IsBorrowed.Equals("Free")).Include(b=> b.Book);
 
 
-            ViewBag.BookCopyID = new SelectList(getCopies, "BookCopyID", "BookCopyID", "Name");
-    
+            ViewBag.BookCopyID = new SelectList(db.BookCopies.Where(b => b.IsBorrowed.Equals("Free")), "BookCopyID", "ISBN");
+
+     
+
             ViewBag.UserID = userId;
             return View();
         }
@@ -99,7 +101,7 @@ namespace projektMVC.Controllers
 
                 //zmienione
                 var bookCopyUpdate = db.BookCopies.Find(borrow.BookCopyID);
-                bookCopyUpdate.IsBorrowed = "Borrowed";
+                bookCopyUpdate.IsBorrowed = "Reserved";
                 db.Entry(bookCopyUpdate).State = EntityState.Modified;
 
                 NotificationForBookIsToGet(User.Identity.GetUserId());

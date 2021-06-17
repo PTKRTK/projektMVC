@@ -122,10 +122,40 @@ namespace projektMVC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Borrow borrow = db.Borrows.Find(id);
+            borrow.BookCopy.IsBorrowed = "Free";
+            db.Entry(borrow).State = EntityState.Modified;
             db.Borrows.Remove(borrow);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+        public ActionResult BorrowForUser(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Borrow borrow = db.Borrows.Find(id);
+            if (borrow == null)
+            {
+                return HttpNotFound();
+            }
+            if (borrow.BookCopy.IsBorrowed.Equals("Reserved")) 
+            {
+                borrow.BookCopy.IsBorrowed = "Borrowed";
+                db.Entry(borrow).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
+
+
+
+
 
         protected override void Dispose(bool disposing)
         {
