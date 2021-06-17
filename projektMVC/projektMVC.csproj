@@ -309,6 +309,11 @@
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Role\DeleteUserRole.cshtml" />
+    <Content Include="Views\Borrow\Index.cshtml" />
+    <Content Include="Views\Borrow\Create.cshtml" />
+    <Content Include="Views\Borrow\Delete.cshtml" />
+    <Content Include="Views\Borrow\Edit.cshtml" />
+    <Content Include="Views\Borrow\Details.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

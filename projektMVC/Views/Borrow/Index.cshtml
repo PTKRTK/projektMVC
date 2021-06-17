@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutEmployer.cshtml";
+}
+
+<h2>Index</h2>
+@model IEnumerable<projektMVC.Models.Borrow>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookCopy.ISBN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Punishment.Charge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookCopy.ISBN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BorrowDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.BookCopy.ISBN)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Punishment.Charge)
+    </td>
+
+    <td>
+        @Html.DisplayFor(model => item.User.UserName)
+    </td>
+
+    <td>
+        <!-- Html.DisplayFor(modelItem => item.BorrowDate.ToString()) -->
+        @item.BorrowDate
+    </td>
+    <td>
+        <!-- Html.DisplayFor(modelItem => item.ReturnDate.ToString()) -->
+        @item.ReturnDate
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.BorrowID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.BorrowID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.BorrowID })
+    </td>
+</tr>
+    }
+
+</table>
+
+
