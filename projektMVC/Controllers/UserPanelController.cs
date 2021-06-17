@@ -184,25 +184,43 @@ namespace projektMVC.Controllers
 
 
 
-        [Authorize(Roles = "User")]
-        public ActionResult Search()
-        {
-            return View();
-        }
+
 
         [Authorize(Roles = "User")]
-        [HttpPost]
+     
         public ActionResult Search(string search)
         {
-            List<Book> lista = new List<Book>();
-            var searchedBooks = db.Books.Where(b => b.BookTitle.Equals(search));
+            var book_ = db.Books.Include(b => b.BookCategory);
 
-            ViewBag.Message = searchedBooks.ToList();
-            return View();
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                book_ = book_.Where(s => s.BookTitle.Contains(search) || s.BookCategory.CategoryTitle.Contains(search));
+
+
+            }
+
+            return View(book_.ToList());
+
         }
 
 
+        [Authorize(Roles = "User")]
+        public ActionResult BorrowBySearch(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var bookCopies = db.BookCopies.Where(b => b.BookID.Equals(id) && b.IsBorrowed.Equals("Free"));
+     
+            if (bookCopies == null)
+            {
+                return View();
+            }
+            ViewBag.BookCopyID = new SelectList(db.BookCopies, "BookCopyID", "IdKopii", bookCopies.ElementAt(0).BookCopyID);
+            return View(bookCopies.ElementAt(0).BookCopyID);
+        }
 
-
-    }
+    }   
 }

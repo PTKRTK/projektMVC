@@ -1,5 +1,4 @@
-﻿@model projektMVC.Models.Book
-@model IEnumerable<projektMVC.Models.Book>
+﻿@model IEnumerable<projektMVC.Models.Book>
 
 @{
     ViewBag.Title = "Search";
@@ -8,39 +7,44 @@
 
 <h2>Search</h2>
 
-<div>
-    @foreach ( b in ViewBag.Message)
+<table class="table">
+    @using (Html.BeginForm())
     {
-
+        <div class"row">
+            <form id="some_form">
+                <p>
+                    Wpisz fraze: @Html.TextBox("search")
+                    <input name="buttonsub" type="submit" value="Szukaj" />
+                </p>
+            </form>
+        </div>
 
     }
 
 
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookTitle)
+        </th>
+        <th></th>
+    </tr>
 
-</div>
-
-@using (Html.BeginForm())
-{
-
-    <table>
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
-                Wpisz szukane słowo:
+                @Html.DisplayFor(modelItem => item.BookTitle)
             </td>
-            <td><input type="text" name="email" /> </td>
-        </tr>
+                        @Html.ActionLink("Szczegóły", "", new { id = item.BookID}) |
 
-        <tr>
+            
             <td>
-                &nbsp
             </td>
-            <td><input type="submit" value="Wyslij" /> </td>
         </tr>
-    </table>
+    }
+
+</table>
 
 
 
 
-
-
-}
