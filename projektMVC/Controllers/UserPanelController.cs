@@ -18,16 +18,9 @@ namespace projektMVC.Controllers
 		private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationDbContext db2 = new ApplicationDbContext();
 
+
         [Authorize(Roles = "User")]
         public ActionResult Index()
-		{
-			ViewBag.AuthorsList = new LinkedList<SelectListItem>();
-			ViewBag.BooksList = new LinkedList<SelectListItem>();
-
-			return View();
-		}
-        [Authorize(Roles = "User")]
-        public ActionResult Borrowed()
 		{
             //dodane
               foreach (Borrow b in db2.Borrows)

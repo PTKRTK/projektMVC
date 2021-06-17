@@ -1,108 +1,39 @@
-﻿
+﻿@model IEnumerable<projektMVC.Models.Borrow>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-
-<div class="row">
-    <div class="col-md-4">
-        @Html.DropDownList("AuthorsList")
-    </div>
-
-    <div class="col-md-8">
-        <a href="#" id="Refresh" class="btn btn-default">Odśwież</a>
-        <a href="#" id="FindByAuthor" class="btn btn-default">Znajdź</a>
-    </div>
-</div>
+<h2>Borrowed</h2>
 
 
-@section scripts {
-    @Scripts.Render("~bundles/jqueryval")
-    @Scripts.Render("~/Scripts/selectize.js")
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookCopy.ISBN)
+            @Html.DisplayNameFor(model => model.BookCopy.Book.BookTitle)
+            @Html.DisplayNameFor(model => model.BorrowDate)
+            @Html.DisplayNameFor(model => model.ReturnDate)
+            @Html.DisplayNameFor(model => model.Punishment.Charge)
 
+        </th>
+        <th></th>
+    </tr>
 
-<script type="text/javascript">
-        var $select;
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookCopy.ISBN)
+                @Html.DisplayFor(modelItem => item.BookCopy.Book.BookTitle)
+                @Html.DisplayFor(modelItem => item.BorrowDate.Date)
+                @Html.DisplayFor(modelItem => item.ReturnDate.Date)
+                @Html.DisplayFor(modelItem => item.Punishment.Charge)
 
-        $(document).ready(function () {
-            $select = $('#AuthorsList').selectize({
-                valueField: 'AuthorID',
-                labelField: 'Name',
-                searchField: ['AuthorID', 'Name', 'Surname'],
-                sortField: 'AuthorID',
-                onInitialize: function () {
-                    loadAuthorsAJAX();
-                },
-                render: {
-                    option: function (item, escape) {
-                        return '<div class="selectDiv">' +
-                            '<span class="subLabel">Autor: </span>' + '<span class="subValue">' + escape(item.AuthorID) + '</span>' +
-                            '<span class="subLabel">Imie: </span>' + '<span class="subValue">' + escape(item.Name) + '</span>' +
-                            '<span class="subLabel">Nazwisko: </span>' + '<span class="subValue">' + escape(item.Surname) + '</span>' +
-                            '</div>';
-                    }
-                }
-            })
+            </td>
 
-            $('#Refresh').click(function () {
-                loadAuthorsAJAX();
-            })
-        });
+        </tr>
+    }
 
-        function loadAuthorsAJAX() {
-            $.ajax({
-                url: '/UserPanel/GetAuthors',
-                type: 'POST',
-                success: function (data) {
-                    for (var i = 0; i < data.length; i++)
-                        $select[0].selectize.addOption(data[i]);
-                },
-                error: function (response) {
-                    alert('Błąd: ' + response);
-                }
-            })
-        }
-
-         
-</script>
-}
-
-
-
-
-@section css {
-    @Styles.Render("~/Content/selectize.bootstrap3.css")
-
-    <style type="text/css">
-        .selectize-dropdown .active {
-            background-color: #428BCA;
-            color: #FFFFFF;
-        }
-
-        div.selectDiv {
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .mainName {
-            font-size: 12px;
-        }
-
-        .subLabel {
-            font-size: 10px;
-            font-weight: bolder;
-            padding-left: 10px;
-        }
-
-        .subValue {
-            font-size: 10px;
-        }
-
-
-        .mainRow {
-        }
-
-        .selectizeFormGroup {
-        }
-    </style>
-}
+</table>

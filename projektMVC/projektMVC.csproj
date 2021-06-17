@@ -303,7 +303,6 @@
     <Content Include="Views\Punishments\Details.cshtml" />
     <Content Include="Views\Punishments\Edit.cshtml" />
     <Content Include="Views\Punishments\Index.cshtml" />
-    <Content Include="Views\UserPanel\Borrowed.cshtml" />
     <Content Include="Views\UserPanel\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutEmployer.cshtml" />
     <Content Include="Views\Shared\_LayoutUser.cshtml" />
