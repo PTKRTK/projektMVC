@@ -1,15 +1,38 @@
-﻿@{
+﻿@model IEnumerable<projektMVC.Models.Announcement>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
-    <h1>BIBLIOTEKA MVC</h1>
-    <p class="lead">Witaj w systemie bibliotecznym. Zaloguj się aby móc korzystać z funkcjonalności</p>
+    <h1>Aktualności</h1>
+
+
+    <table class="table">
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    <h3>
+                        @Html.DisplayFor(modelItem => item.AnnouncementText)
+                    </h3>
+                    
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublicationDate)
+                </td>
+            </tr>
+        }
+
+    </table>
+
 
 </div>
 
 <div class="row">
-    
+
     <div>
         @Html.ActionLink("Email Test", "SendEmail")
     </div>
