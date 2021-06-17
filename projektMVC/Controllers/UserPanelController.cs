@@ -211,15 +211,13 @@ namespace projektMVC.Controllers
 
         public ActionResult Search(string search)
         {
-            var bookCopies_ = db.BookCopies.Include(b => b.Book).Include(b => b.Book.BookCategory);
+            var bookCopies_ = db.BookCopies.Include(b => b.Book).Include(b => b.Book.BookCategory).Include(b => b.Book);
 
 
             if (!String.IsNullOrEmpty(search))
             {
                 bookCopies_ = bookCopies_.Where(s => s.Book.BookTitle.Contains(search) || s.Book.BookCategory.CategoryTitle.Contains(search) || s.ISBN.ToString().Contains(search));
                 
-
-
             }
 
             return View(bookCopies_.ToList());

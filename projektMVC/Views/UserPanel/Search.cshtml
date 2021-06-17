@@ -33,12 +33,15 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item )
-                    
+                @Html.DisplayFor(modelItem => item.ISBN)
+                @Html.DisplayFor(modelItem => item.Book.BookTitle)
+                @Html.DisplayFor(modelItem => item.Book.BookCategory.CategoryTitle)
+                
+
+
+
             </td>
 
-
-                        @Html.ActionLink("Szczegóły", "", new { id = item.BookID}) |
 
             
             <td>
