@@ -23,7 +23,7 @@
                 @Html.ValidationMessageFor(model => model.BookCopyID, "", new { @class = "text-danger" })
             </div>
         </div>
-    
+
 
 
         <div class="form-group">
@@ -34,6 +34,22 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+
+<table>
+    <tr>
+        <td>
+            Wyszukaj
+        </td>
+        <td><input type="text" name="wyszukaj" /> </td>
+    </tr>
+
+
+    <tr>
+        <td>
+            &nbsp
+        </td>
+        <td><input type="submit" value="Wyslij" /> </td>
+    </tr>
+</table>
+

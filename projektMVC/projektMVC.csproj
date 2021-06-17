@@ -318,6 +318,7 @@
     <Content Include="Views\Borrow\Edit.cshtml" />
     <Content Include="Views\Borrow\Details.cshtml" />
     <Content Include="Views\Borrow\BorrowForUser.cshtml" />
+    <Content Include="Views\UserPanel\Search.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
