@@ -15,6 +15,7 @@ namespace projektMVC.Controllers
     {
    
 		private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext db2 = new ApplicationDbContext();
 
         [Authorize(Roles = "User")]
         public ActionResult Index()
@@ -27,8 +28,36 @@ namespace projektMVC.Controllers
         [Authorize(Roles = "User")]
         public ActionResult Borrowed()
 		{
-			var userId = User.Identity.GetUserId();
-			var books = db.Borrows.Where(b => b.UserID == userId).Include(b => b.BookCopy.Book).Include(b => b.BookCopy);
+            //dodane
+              foreach (Borrow b in db2.Borrows)
+            {
+                    if ((b.ReturnDate - DateTime.Today).TotalDays < 0)
+                    {
+                 
+                        b.PunishmentID = 2;
+                        db2.Entry(b).State = EntityState.Modified;
+                
+                    }
+                    if ((b.ReturnDate - DateTime.Today).TotalDays < -10)
+                    {
+                        
+                        b.PunishmentID = 3;
+                        db2.Entry(b).State = EntityState.Modified;
+       
+                    }
+                    if ((b.ReturnDate - DateTime.Today).TotalDays < -20)
+                    {
+                        b.PunishmentID = 4;
+                        db2.Entry(b).State = EntityState.Modified;
+                    
+                    }
+
+                }
+
+            db2.SaveChanges();
+            //stare
+            var userId = User.Identity.GetUserId();
+			var books = db.Borrows.Where(b => b.UserID == userId).Include(b => b.BookCopy.Book).Include(b => b.BookCopy).Include(b => b.Punishment);
 
 			return View(books.ToList());
 		}

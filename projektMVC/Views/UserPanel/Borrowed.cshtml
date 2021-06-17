@@ -15,8 +15,7 @@
             @Html.DisplayNameFor(model => model.BookCopy.Book.BookTitle)
             @Html.DisplayNameFor(model => model.BorrowDate)
             @Html.DisplayNameFor(model => model.ReturnDate)
-
-
+            @Html.DisplayNameFor(model => model.Punishment.Charge)
 
         </th>
 
@@ -30,7 +29,9 @@
                 @Html.DisplayFor(modelItem => item.BookCopy.ISBN)
                 @Html.DisplayFor(modelItem => item.BookCopy.Book.BookTitle)
                 @Html.DisplayFor(modelItem => item.BorrowDate.Date)
-         
+                @Html.DisplayFor(modelItem => item.ReturnDate.Date)
+                @Html.DisplayFor(modelItem => item.Punishment.Charge)
+
             </td>
 
         </tr>
